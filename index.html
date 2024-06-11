@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optimización de Distribución de Recursos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: rgb(139, 199, 255);
+            background-image: url("fondoplantilla.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
             color: #333;
         }
         .container {
@@ -19,14 +28,29 @@
         }
         h1 {
             text-align: center;
-            color: #FFA500;
+            color: #ff99ff;
+            font-family: "Crimson Text", serif;
+            font-weight: 450;
+            font-style: italic;
+            font-family: "Sofia", sans-serif;
         }
         .section {
             margin-bottom: 20px;
         }
+        .section label{
+            font-family: "Crimson Text", serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
         .section-title {
-            color: #FFA500;
             margin-bottom: 10px;
+            font-size: 20px;
+            text-align: center;
+            font-family: "Crimson Text", serif;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            
         }
         input[type="number"] {
             width: 100%;
@@ -37,14 +61,15 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #FFA500;
+            background-color: #ff99ff;
             border: none;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #cc8400;
+            color:black;
+            font-weight: bold;
         }
         .result {
             margin-top: 10px;
@@ -54,10 +79,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Optimización de Distribución de Recursos</h1>
+        <h1 class="font-effect-neon">OPTIMIZACIÓN DE DISTRIBUCIÓN DE RECURSOS</h1>
 
         <div class="section">
-            <div class="section-title">Campañas de concientización y capacitación</div>
+            <div class="section-title">Campañas de concientización y capacitación</div><br>
             <label for="totalCapacitadores">Número total de capacitadores:</label>
             <input type="number" id="totalCapacitadores">
             <label for="grupoCapacitadores">Tamaño del grupo de capacitadores:</label>
@@ -67,7 +92,7 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Monitoreo y priorización de áreas</div>
+            <div class="section-title">Monitoreo y priorización de áreas</div><br>
             <label for="totalAreas">Número total de áreas:</label>
             <input type="number" id="totalAreas">
             <label for="areasMonitorear">Número de áreas a monitorear:</label>
@@ -77,7 +102,7 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Disponibilidad de equipos</div>
+            <div class="section-title">Disponibilidad de equipos</div><br>
             <label for="totalEquipos">Número total de equipos:</label>
             <input type="number" id="totalEquipos">
             <label for="equiposPorCentro">Número de equipos por centro:</label>

@@ -1,11 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Optimización de Distribución de Recursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #FFA500;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            color: #FFA500;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFA500;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #cc8400;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <p5>HOLA</p5>
+    <div class="container">
+        <h1>Optimización de Distribución de Recursos</h1>
+
+        <div class="section">
+            <div class="section-title">Campañas de concientización y capacitación</div>
+            <label for="totalCapacitadores">Número total de capacitadores:</label>
+            <input type="number" id="totalCapacitadores">
+            <label for="grupoCapacitadores">Tamaño del grupo de capacitadores:</label>
+            <input type="number" id="grupoCapacitadores">
+            <button onclick="calcularCombinatoria('capacitadores')">Calcular maneras de organizar</button>
+            <div class="result" id="resultadoCapacitadores"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Monitoreo y priorización de áreas</div>
+            <label for="totalAreas">Número total de áreas:</label>
+            <input type="number" id="totalAreas">
+            <label for="areasMonitorear">Número de áreas a monitorear:</label>
+            <input type="number" id="areasMonitorear">
+            <button onclick="calcularPermutacion('areas')">Calcular formas de priorizar</button>
+            <div class="result" id="resultadoAreas"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Disponibilidad de equipos</div>
+            <label for="totalEquipos">Número total de equipos:</label>
+            <input type="number" id="totalEquipos">
+            <label for="equiposPorCentro">Número de equipos por centro:</label>
+            <input type="number" id="equiposPorCentro">
+            <button onclick="calcularCombinatoria('equipos')">Calcular maneras de distribuir</button>
+            <div class="result" id="resultadoEquipos"></div>
+        </div>
+    </div>
+
+    <script>
+        function factorial(n) {
+            if (n === 0) return 1;
+            let result = 1;
+            for (let i = 1; i <= n; i++) result *= i;
+            return result;
+        }
+
+        function combinatoria(n, r) {
+            return factorial(n) / (factorial(r) * factorial(n - r));
+        }
+
+        function permutacion(n, r) {
+            return factorial(n) / factorial(n - r);
+        }
+
+        function calcularCombinatoria(tipo) {
+            let n, r, result;
+            if (tipo === 'capacitadores') {
+                n = parseInt(document.getElementById('totalCapacitadores').value);
+                r = parseInt(document.getElementById('grupoCapacitadores').value);
+                result = combinatoria(n, r);
+                document.getElementById('resultadoCapacitadores').innerText = `Maneras de organizar ${n} capacitadores en grupos de ${r}: ${result}`;
+            } else if (tipo === 'equipos') {
+                n = parseInt(document.getElementById('totalEquipos').value);
+                r = parseInt(document.getElementById('equiposPorCentro').value);
+                result = combinatoria(n, r);
+                document.getElementById('resultadoEquipos').innerText = `Maneras de distribuir ${n} equipos en grupos de ${r}: ${result}`;
+            }
+        }
+
+        function calcularPermutacion() {
+            let n = parseInt(document.getElementById('totalAreas').value);
+            let r = parseInt(document.getElementById('areasMonitorear').value);
+            let result = permutacion(n, r);
+            document.getElementById('resultadoAreas').innerText = `Formas de priorizar ${r} áreas de ${n} para el monitoreo: ${result}`;
+        }
+    </script>
 </body>
 </html>

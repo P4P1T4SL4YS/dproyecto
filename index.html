@@ -3,151 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimización de Distribución de Recursos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
-
+    <title>Cálculo de Eficiencia en Control del Dengue</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url("fondoplantilla.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            color: #333;
+            margin: 20px;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #ff99ff;
-            font-family: "Crimson Text", serif;
-            font-weight: 450;
-            font-style: italic;
-            font-family: "Sofia", sans-serif;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section label{
-            font-family: "Crimson Text", serif;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .section-title {
+        input {
             margin-bottom: 10px;
-            font-size: 20px;
-            text-align: center;
-            font-family: "Crimson Text", serif;
-            font-weight: 600;
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ff99ff;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            color:black;
-            font-weight: bold;
-        }
-        .result {
-            margin-top: 10px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="font-effect-neon">OPTIMIZACIÓN DE DISTRIBUCIÓN DE RECURSOS</h1>
+    <h1>Cálculo de Eficiencia en Control del Dengue</h1>
+    <label for="indice_inicial">Índice inicial de infestación de mosquitos:</label>
+    <input type="number" id="indice_inicial" step="0.01"><br>
 
-        <div class="section">
-            <div class="section-title">Campañas de concientización y capacitación</div><br>
-            <label for="totalCapacitadores">Número total de capacitadores:</label>
-            <input type="number" id="totalCapacitadores">
-            <label for="grupoCapacitadores">Tamaño del grupo de capacitadores:</label>
-            <input type="number" id="grupoCapacitadores">
-            <button onclick="calcularCombinatoria('capacitadores')">Calcular maneras de organizar</button>
-            <div class="result" id="resultadoCapacitadores"></div>
-        </div>
+    <label for="indice_posterior">Índice posterior de infestación de mosquitos:</label>
+    <input type="number" id="indice_posterior" step="0.01"><br>
 
-        <div class="section">
-            <div class="section-title">Monitoreo y priorización de áreas</div><br>
-            <label for="totalAreas">Número total de áreas:</label>
-            <input type="number" id="totalAreas">
-            <label for="areasMonitorear">Número de áreas a monitorear:</label>
-            <input type="number" id="areasMonitorear">
-            <button onclick="calcularPermutacion('areas')">Calcular formas de priorizar</button>
-            <div class="result" id="resultadoAreas"></div>
-        </div>
+    <label for="casos_iniciales">Número inicial de casos de dengue:</label>
+    <input type="number" id="casos_iniciales"><br>
 
-        <div class="section">
-            <div class="section-title">Disponibilidad de equipos</div><br>
-            <label for="totalEquipos">Número total de equipos:</label>
-            <input type="number" id="totalEquipos">
-            <label for="equiposPorCentro">Número de equipos por centro:</label>
-            <input type="number" id="equiposPorCentro">
-            <button onclick="calcularCombinatoria('equipos')">Calcular maneras de distribuir</button>
-            <div class="result" id="resultadoEquipos"></div>
-        </div>
-    </div>
+    <label for="casos_posteriores">Número posterior de casos de dengue:</label>
+    <input type="number" id="casos_posteriores"><br>
+
+    <label for="costo_total">Costo total de las medidas de control:</label>
+    <input type="number" id="costo_total" step="0.01"><br>
+
+    <button onclick="calcularEficiencia()">Calcular</button>
+
+    <h2>Resultados</h2>
+    <p id="resultado_reduccion_indice"></p>
+    <p id="resultado_reduccion_casos"></p>
+    <p id="resultado_costo_eficiencia"></p>
 
     <script>
-        function factorial(n) {
-            if (n === 0) return 1;
-            let result = 1;
-            for (let i = 1; i <= n; i++) result *= i;
-            return result;
-        }
-
-        function combinatoria(n, r) {
-            return factorial(n) / (factorial(r) * factorial(n - r));
-        }
-
-        function permutacion(n, r) {
-            return factorial(n) / factorial(n - r);
-        }
-
-        function calcularCombinatoria(tipo) {
-            let n, r, result;
-            if (tipo === 'capacitadores') {
-                n = parseInt(document.getElementById('totalCapacitadores').value);
-                r = parseInt(document.getElementById('grupoCapacitadores').value);
-                result = combinatoria(n, r);
-                document.getElementById('resultadoCapacitadores').innerText = `Maneras de organizar ${n} capacitadores en grupos de ${r}: ${result}`;
-            } else if (tipo === 'equipos') {
-                n = parseInt(document.getElementById('totalEquipos').value);
-                r = parseInt(document.getElementById('equiposPorCentro').value);
-                result = combinatoria(n, r);
-                document.getElementById('resultadoEquipos').innerText = `Maneras de distribuir ${n} equipos en grupos de ${r}: ${result}`;
+        function calcularReduccion(inicial, posterior) {
+            if (inicial === 0) {
+                return 0;
             }
+            return ((inicial - posterior) / inicial) * 100;
         }
 
-        function calcularPermutacion() {
-            let n = parseInt(document.getElementById('totalAreas').value);
-            let r = parseInt(document.getElementById('areasMonitorear').value);
-            let result = permutacion(n, r);
-            document.getElementById('resultadoAreas').innerText = `Formas de priorizar ${r} áreas de ${n} para el monitoreo: ${result}`;
+        function calcularCostoEficiencia(costo_total, casos_evotidos) {
+            if (casos_evotidos === 0) {
+                return Infinity;  // Evitar división por cero
+            }
+            return costo_total / casos_evotidos;
+        }
+
+        function calcularEficiencia() {
+            let indice_inicial = parseFloat(document.getElementById('indice_inicial').value);
+            let indice_posterior = parseFloat(document.getElementById('indice_posterior').value);
+            let casos_iniciales = parseInt(document.getElementById('casos_iniciales').value);
+            let casos_posteriores = parseInt(document.getElementById('casos_posteriores').value);
+            let costo_total = parseFloat(document.getElementById('costo_total').value);
+
+            if (isNaN(indice_inicial) || isNaN(indice_posterior) || isNaN(casos_iniciales) || isNaN(casos_posteriores) || isNaN(costo_total)) {
+                alert("Por favor, ingrese valores numéricos válidos.");
+                return;
+            }
+
+            if (indice_inicial < 0 || indice_posterior < 0 || casos_iniciales < 0 || casos_posteriores < 0 || costo_total < 0) {
+                alert("Todos los valores deben ser no negativos.");
+                return;
+            }
+
+            if (indice_posterior > indice_inicial) {
+                alert("El índice posterior no puede ser mayor que el índice inicial.");
+                return;
+            }
+
+            if (casos_posteriores > casos_iniciales) {
+                alert("El número de casos posteriores no puede ser mayor que el número de casos iniciales.");
+                return;
+            }
+
+            let reduccion_indice = calcularReduccion(indice_inicial, indice_posterior);
+            let reduccion_casos = calcularReduccion(casos_iniciales, casos_posteriores);
+            let casos_evotidos = casos_iniciales - casos_posteriores;
+            let costo_eficiencia = calcularCostoEficiencia(costo_total, casos_evotidos);
+
+            document.getElementById('resultado_reduccion_indice').innerText = `Reducción del índice de infestación: ${reduccion_indice.toFixed(2)}%`;
+            document.getElementById('resultado_reduccion_casos').innerText = `Reducción de casos de dengue: ${reduccion_casos.toFixed(2)}%`;
+            document.getElementById('resultado_costo_eficiencia').innerText = `Costo por caso evitado: ${costo_eficiencia.toFixed(2)} unidades monetarias`;
         }
     </script>
 </body>

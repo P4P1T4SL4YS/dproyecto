@@ -6,37 +6,98 @@
     <title>Cálculo de Eficiencia en Control del Dengue</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            background-image: url("fondoplantilla.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
         }
         input {
+            width: calc(100% - 20px);
+            padding: 10px;
             margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h1>Cálculo de Eficiencia en Control del Dengue</h1>
-    <label for="indice_inicial">Índice inicial de infestación de mosquitos:</label>
-    <input type="number" id="indice_inicial" step="0.01"><br>
+    <div class="container">
+        <h1>Cálculo de Eficiencia en Control del Dengue</h1>
+        <label for="indice_inicial">Índice inicial de infestación de mosquitos:</label>
+        <input type="number" id="indice_inicial" step="0.01">
 
-    <label for="indice_posterior">Índice posterior de infestación de mosquitos:</label>
-    <input type="number" id="indice_posterior" step="0.01"><br>
+        <label for="indice_posterior">Índice posterior de infestación de mosquitos:</label>
+        <input type="number" id="indice_posterior" step="0.01">
 
-    <label for="casos_iniciales">Número inicial de casos de dengue:</label>
-    <input type="number" id="casos_iniciales"><br>
+        <label for="casos_iniciales">Número inicial de casos de dengue:</label>
+        <input type="number" id="casos_iniciales">
 
-    <label for="casos_posteriores">Número posterior de casos de dengue:</label>
-    <input type="number" id="casos_posteriores"><br>
+        <label for="casos_posteriores">Número posterior de casos de dengue:</label>
+        <input type="number" id="casos_posteriores">
 
-    <label for="costo_total">Costo total de las medidas de control:</label>
-    <input type="number" id="costo_total" step="0.01"><br>
+        <label for="costo_total">Costo total de las medidas de control:</label>
+        <input type="number" id="costo_total" step="0.01">
 
-    <button onclick="calcularEficiencia()">Calcular</button>
+        <button onclick="calcularEficiencia()">Calcular</button>
 
-    <h2>Resultados</h2>
-    <p id="resultado_reduccion_indice"></p>
-    <p id="resultado_reduccion_casos"></p>
-    <p id="resultado_costo_eficiencia"></p>
+        <h2>Resultados</h2>
+        <p id="resultado_reduccion_indice"></p>
+        <p id="resultado_reduccion_casos"></p>
+        <p id="resultado_costo_eficiencia"></p>
+    </div>
 
     <script>
         function calcularReduccion(inicial, posterior) {
